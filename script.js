@@ -67,7 +67,7 @@ const calcTempAmplitudeNew = function (t1, t2) {
 const amplitudeNew = calcTempAmplitudeNew([3, 5, 4, 1], [9, 0, 1, 5]);
 console.log(amplitudeNew);
 
-*/
+
 
 const measureKelvin = function () {
   const measurement = {
@@ -96,8 +96,8 @@ const calcTempAmplitudeBug = function (t1, t2) {
 
   const temps = t1.concat(t2);
   console.log(temps);
-  let max = 0;
-  let min = 0;
+  let max = temps[0];
+  let min = temps[0];
   for (let i = 0; i < temps.length; i++) {
     const curTemp = temps[i];
     if (typeof curTemp !== 'number') continue;
@@ -111,3 +111,78 @@ const calcTempAmplitudeBug = function (t1, t2) {
 const amplitudeBug = calcTempAmplitudeBug([3, 5, 1], [9, 4, 5]);
 // A) Identify:
 console.log(amplitudeBug);
+
+
+
+///////////////////////////////////////////////////////////////////////// Code challenge #1
+
+// Given an array of forcasted maximum temps, the thermometer displays a string with these temps.
+
+// example: [17, 21, 23] will print "...17C in 1 days ... 21C in 2 days ... 23C in 3 days ..."
+
+//create a function 'printForcast' which takes in an array 'arr' and logs a string like the above to the console.
+
+// Use the problem-solving framwork: Understand the problem and break it up into sub-problems!
+
+// TEST DATA 1: [17, 21, 23]
+// TEST DATA 2: [12, 5, -5, 0, 4]
+
+
+// MY SOULUTION TO THE CHALLENGE
+//function
+const printForcast = function (data1, data2) {
+  const arr = testData1.concat(testData2);
+  let max = arr[0];
+  let min = arr[0];
+  let forecastStr = '';
+
+  //looping through the array and adding the number of days
+  for (let i = 0; i < arr.length; i++) {
+    forecastStr += `...${arr[i]}C in ${i + 1} days`;
+    const currTemp = arr[i];
+    if (typeof currTemp === 'string') continue;
+
+    //determining the min max
+    if (currTemp > max) max = currTemp;
+    if (currTemp < min) min = currTemp;
+  }
+  //logging the min max
+  console.log(forecastStr);
+  console.log(`Max Temp:${max} | Min Temp:${min}`);
+
+  return min, max;
+};
+
+// test date
+const testData1 = [17, 21, 23];
+const testData2 = [12, 5, -5, 0, 4];
+// displaying the function
+const result = printForcast(testData1, testData2);
+console.log(result);
+
+*/
+
+// UDEMY SOULUTION TO THE CHALLENGE:
+
+// Understanding the problem
+// - Array transformed to a string, seperated by ...
+// - what is the X days? Answer: index + 1
+
+// Breaking up into sub-problems
+// - Transform array into string
+// - Transform each lement to string with C
+// - String needs to contain day (index + 1)
+// - Add ... between elements and start and end of string
+
+const data1 = [17, 21, 23];
+const data2 = [12, 5, -5, 0, 4];
+const allData = data1.concat(data2);
+
+const printForcast = function (arr) {
+  let str = '';
+  for (let i = 0; i < arr.length; i++) {
+    str = str + `${arr[i]}C in ${i + 1} days ...`;
+  }
+  console.log('...' + str);
+};
+printForcast(allData);
