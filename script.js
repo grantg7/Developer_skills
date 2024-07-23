@@ -160,7 +160,7 @@ const testData2 = [12, 5, -5, 0, 4];
 const result = printForcast(testData1, testData2);
 console.log(result);
 
-*/
+
 
 // UDEMY SOULUTION TO THE CHALLENGE:
 
@@ -186,3 +186,27 @@ const printForcast = function (arr) {
   console.log('...' + str);
 };
 printForcast(allData);
+*/
+
+//PERSONAL CHALLENGE
+// using the kills you have learned so far, generate a function called costGas that will calculate the distance traveled/ gallons consumed, and out put the miles per gallon for the car and the amount of gas it cost to travel that disstance.
+
+const costGas = function (distance, gallonsConsumed, costPerGallon) {
+  //calculate miles per gallon
+  const milesPerGallon = distance / gallonsConsumed;
+  //calculate total gas cost
+  const totalCost = gallonsConsumed * costPerGallon;
+  //return the object with the results
+  return {
+    milesPerGallon: milesPerGallon,
+    totalCost: totalCost,
+  };
+};
+
+const distanceTraveled = 478;
+const gallonsUsed = 26;
+const costPerGallon = 3.5;
+
+const result = costGas(distanceTraveled, gallonsUsed, costPerGallon);
+console.log(`Miles per gallon: ${result.milesPerGallon}`);
+console.log(`total gas cost: $${result.totalCost}`);
